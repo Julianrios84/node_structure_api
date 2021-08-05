@@ -6,10 +6,20 @@ const config = require("../config");
 const app = require(".");
 
 // services
-const { HomeService, UserService, IdeaService, CommentService } = require("../services");
+const {
+  HomeService,
+  UserService,
+  IdeaService,
+  CommentService,
+} = require("../services");
 
 // controllers
-const { HomeController } = require("../controllers");
+const {
+  HomeController,
+  UserController,
+  IdeaController,
+  CommentController,
+} = require("../controllers");
 
 // routes
 const { HomeRoutes } = require("../routes/index.routes");
@@ -19,7 +29,11 @@ const Routes = require("../routes");
 const { User, Comment, Idea } = require("../models");
 
 // Repositories
-const { UserRepository, IdeaRepository, CommentRepository } = require("../repositories");
+const {
+  UserRepository,
+  IdeaRepository,
+  CommentRepository,
+} = require("../repositories");
 
 // container
 const container = createContainer();
@@ -38,6 +52,11 @@ container
   })
   .register({
     HomeController: asClass(HomeController.bind(HomeController)).singleton(),
+    UserController: asClass(UserController.bind(UserController)).singleton(),
+    IdeaController: asClass(IdeaController.bind(IdeaController)).singleton(),
+    CommentController: asClass(
+      CommentController.bind(CommentController)
+    ).singleton(),
   })
   .register({
     HomeRoutes: asFunction(HomeRoutes).singleton(),
@@ -45,7 +64,7 @@ container
   .register({
     User: asValue(User),
     Idea: asValue(Idea),
-    Comment: asValue(Comment)
+    Comment: asValue(Comment),
   })
   .register({
     UserRepository: asClass(UserRepository).singleton(),
